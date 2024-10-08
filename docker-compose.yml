@@ -21,3 +21,21 @@ services:
       - ./mysql_NGNIXb/my.cnf:/etc/mysql/my.cnf
 
 
+
+      
+  nginx:
+    image: nginx:lastest
+  wordpress:
+    depands_on:
+      -  db
+    image: wordpress:lastest
+    ports:
+      -  '8000:80'
+   restart: always
+   environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: wordpress
+       WORDPRESS_DB_NAME: wordpress
+
+
