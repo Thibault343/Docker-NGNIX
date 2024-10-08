@@ -1,9 +1,23 @@
-version: '3.1'
+
+version: '3.8'
+
 services:
-  db:
-    image: mysql
+  mysql_NGNIX:
+    image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
+      MYSQL_DATABASE: pokemons
       MYSQL_ROOT_PASSWORD: Pa$$w0rd
+      MYSQL_USER: user
+      MYSQL_PASSWORD: Pa$$w0rd
+
+
+
+
     ports:
-      - '3306:3306'
+      - "3306:3306"
+    volumes:
+      - ./mysql_NGNIXb/my.cnf:/etc/mysql/my.cnf
+
+
